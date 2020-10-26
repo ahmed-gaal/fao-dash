@@ -84,7 +84,7 @@ def total_element(item = None, option = None):
         return pdd
 
 data = pd.read_csv('data/liin.csv')
-colors = ['#133F54','#29AEB4','#B3CBB9','#F14B5B','#CA2E44']
+colors = ['#C54367','#367385','#D7D97E','#1D111F','#903D30']
 fig = go.Figure()
 
 fig.add_trace(go.Indicator(
@@ -116,7 +116,7 @@ fig2 = country_info('Somalia', item='Lemons and limes').iplot(asFigure = True, k
 
 fig3 = px.scatter_mapbox(total_element('Lemons and limes','production'), lat='Lat',lon='Lon',color='Total',hover_name='Area',size = 'Total',
                         hover_data={'Lat':False, 'Lon':False}, labels = {'Area':'Element'}, color_continuous_scale=colors,
-                        zoom=1.7, width=1900, height=700, template='presentation',center=None, mapbox_style='light',title='Global Lemons and limes Production in Tonnes(2014-2018)')
+                        zoom=1.4, width=1900, height=700, template='presentation',center=None, mapbox_style='light',title='Global Lemons and limes Production in Tonnes(2014-2018)')
 
 fig4 = data[data['Element'] == 'Production'].iplot(asFigure = True, kind = 'pie', labels = 'Area', values = 'Y2018', legend = False,textinfo = 'label+percent',theme = 'polar', hole = .6, linecolor = 'white', colors = colors, linewidth = .5, title = 'Lemons and limes Production in Africa as at 2018')
 fig5 = country_info('Somalia', item='Lemons and limes').iplot(asFigure = True, kind = 'scatter', mode = 'lines+markers', x = 'Years', y = 'Yield',subplots = True,subplot_titles = True,xTitle = 'Years', yTitle = 'Tonne per Hectare', title = 'Lemons and limes Yield for Somalia (2014 - 2018)', colorscale = 'puor', theme = 'polar', interpolation = 'spline')
@@ -125,7 +125,7 @@ fig6 = country_info('Somalia', item='Lemons and limes').iplot(asFigure = True, k
 layout = html.Div([
     dbc.Container([
         dbc.Row([
-                dbc.Col(html.H1('World Lemons Statistics at a Glance', className='text-center'), className='mb-4 mt-5')
+                dbc.Col(html.H1('World Lemons Statistics as at 2018', className='text-center'), className='mb-4 mt-5')
             ]),
         dbc.Row(
             dbc.Col(html.Div([

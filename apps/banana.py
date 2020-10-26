@@ -108,14 +108,14 @@ fig.add_trace(go.Indicator(
     domain = {'x': [0.5, 0], 'y': [1, 0.5]}))
 
 fig1 = country_info('Somalia', item='Bananas').iplot(asFigure = True, kind = 'bar', barmode = 'overlay', x = 'Years', y = 'Area harvested',
-                                              yTitle = 'Years', xTitle = 'Area Harvested (Hectares)', theme = 'polar', colorscale = 'prgn', orientation = 'h')
+                                              yTitle = 'Years', xTitle = 'Area Harvested (Hectares)', theme = 'polar', colors = '#914F9A', orientation = 'h')
 
-fig2 = country_info('Somalia', item='Bananas').iplot(asFigure = True, kind = 'bar', barmode = 'overlay', x = 'Years', y = 'Production',
-                                              xTitle = 'Years', yTitle = 'Tonnes', theme = 'polar',subplots = True,subplot_titles = True,colors = '#AD1A31', title = 'Banana Production in Somalia from 2014 - 2018')
+fig2 = country_info('Somalia', item='Bananas').iplot(asFigure = True, kind = 'scatter', interpolation = 'spline',mode = 'lines', x = 'Years', y = 'Production',
+                                              xTitle = 'Years', yTitle = 'Tonnes', theme = 'polar',subplots = True,subplot_titles = True,colors = '#CD4E43', title = 'Banana Production in Somalia from 2014 - 2018')
 
 fig3 = px.scatter_mapbox(total_element('Bananas','production'), lat='Lat',lon='Lon',color='Total',hover_name='Area',size = 'Total',
                         hover_data={'Lat':False, 'Lon':False}, labels = {'Area':'Element'}, color_continuous_scale=colors,
-                        zoom=1.7, width=1900, height=700, template='presentation',center=None, mapbox_style='light',title='Global Banana Production in Tonnes(2014-2018)')
+                        zoom=1.4, width=1900, height=700, template='presentation',center=None, mapbox_style='light',title='Global Banana Production in Tonnes(2014-2018)')
 
 fig4 = data[data['Element'] == 'Production'].iplot(asFigure = True, kind = 'pie', labels = 'Area', values = 'Y2018', legend = False,textinfo = 'label+percent',theme = 'polar', hole = .6, linecolor = 'white', colors = colors, linewidth = .5, title = 'Banana Production in Africa as at 2018')
 fig5 = country_info('Somalia', item='Bananas').iplot(asFigure = True, kind = 'scatter', mode = 'lines+markers', x = 'Years', y = 'Yield',subplots = True,subplot_titles = True,xTitle = 'Years', yTitle = 'Tonne per Hectare', title = 'Banana Yield for Somalia (2014 - 2018)', colorscale = 'puor', theme = 'polar', interpolation = 'spline')
@@ -124,7 +124,7 @@ fig6 = country_info('Somalia', item='Bananas').iplot(asFigure = True, kind = 'ba
 layout = html.Div([
     dbc.Container([
         dbc.Row([
-                dbc.Col(html.H1('World Bananas Statistics at a Glance', className='text-center'), className='mb-4 mt-5')
+                dbc.Col(html.H1('World Bananas Statistics as at 2018', className='text-center'), className='mb-4 mt-5')
             ]),
         dbc.Row(
             dbc.Col(html.Div([
