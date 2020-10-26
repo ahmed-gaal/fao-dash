@@ -22,21 +22,24 @@ drop = ['Unnamed: 0', 'Area Code', 'Area', 'Item Code','Element Code','Y1961', '
             'Y1993', 'Y1994', 'Y1995', 'Y1996', 'Y1997', 'Y1998','Y1999', 'Y2000', 'Y2001', 'Y2002', 'Y2003', 'Y2004', 'Y2005',
             'Y2006','Y2007', 'Y2008','Y2009', 'Y2010', 'Y2011', 'Y2012', 'Y2013']
 
-def world_clean(drop,option = None):
+def confirm_option_value(value, dataframe):
+    if value == 'area':
+         return dataframe[dataframe['Element'] == 'Area harvested']
+    elif value  == 'yield':
+        y = dataframe[dataframe['Element'] == 'Yield']
+        y['Total'] = y['Total'] / 10000
+        return y
+    elif value  == 'production':
+        return dataframe[dataframe['Element'] == 'Production']
+
+def world_clean(value,drop = None):
     world1 = world.drop(drop, axis = 1)
     total = world1.sum(axis = 1)
     world1['Total'] = total
-    if option == 'area':
-        return world1[world1['Element'] == 'Area harvested']
-    elif option == 'yield':
-        y = world1[world1['Element'] == 'Yield']
-        y['Total'] = y['Total'] / 10000
-        return y
-    elif option == 'production':
-        return world1[world1['Element'] == 'Production']
-ar=world_clean(drop=drop, option = 'area')
-pdd=world_clean(drop =drop, option = 'production')
-yy=world_clean(drop=drop, option='yield')
+    return confirm_option_value(value, world1)
+ar=world_clean('area', drop=drop)
+pdd=world_clean('production',drop =drop)
+yy=world_clean('yield',drop=drop)
 def country_info(country, item = None): #option = None):
     '''Function for producing country information
     '''
