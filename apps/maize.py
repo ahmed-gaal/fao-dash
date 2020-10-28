@@ -21,6 +21,7 @@ drop = ['Unnamed: 0', 'Area Code', 'Area', 'Item Code','Element Code','Y1961', '
             'Y1980', 'Y1981', 'Y1982','Y1983', 'Y1984', 'Y1985', 'Y1986', 'Y1987', 'Y1988', 'Y1989', 'Y1990','Y1991', 'Y1992',
             'Y1993', 'Y1994', 'Y1995', 'Y1996', 'Y1997', 'Y1998','Y1999', 'Y2000', 'Y2001', 'Y2002', 'Y2003', 'Y2004', 'Y2005',
             'Y2006','Y2007', 'Y2008','Y2009', 'Y2010', 'Y2011', 'Y2012', 'Y2013']
+
 def confirm_option_value(value, dataframe):
     if value == 'area':
          return dataframe[dataframe['Element'] == 'Area harvested']
@@ -30,12 +31,13 @@ def confirm_option_value(value, dataframe):
         return y
     elif value  == 'production':
         return dataframe[dataframe['Element'] == 'Production']
-def world_clean(value, drop = None):
+
+def world_clean(value,drop = None):
     world1 = world.drop(drop, axis = 1)
     total = world1.sum(axis = 1)
     world1['Total'] = total
     return confirm_option_value(value, world1)
-ar=world_clean('area',drop=drop)
+ar=world_clean('area', drop=drop)
 pdd=world_clean('production',drop =drop)
 yy=world_clean('yield',drop=drop)
 def country_info(country, item = None): #option = None):
@@ -75,53 +77,53 @@ def total_element(value, item = None):
     ## Filtering elements
     return confirm_option_value(value, ittem)
 
-bean = pd.read_csv('data/bambelmo.csv')
-colors = ['#4E5C8C','#D6AB2C','#79B2D6','#879E9C','#E52C25']
+data = pd.read_csv('data/mahindi.csv')
+colors = ['#957CC3','#ACD37B','#60A3F2','#8A74C4','#3A6EB8']
 fig = go.Figure()
 
 fig.add_trace(go.Indicator(
     mode = "number+delta",
-    value = ar[ar['Item'] == 'Grapefruit (inc. pomelos)'].Y2018.sum(),
+    value = ar[ar['Item'] == 'Maize'].Y2018.sum(),
     title = {"text": "Area Harvested<br><span style='font-size:0.8em;color:gray'>in</span><br><span style='font-size:0.8em;color:gray'>Hectares</span>"},
-    delta = {'reference': ar[ar['Item'] == 'Grapefruit (inc. pomelos)'].Y2017.sum(), 'relative': True},
+    delta = {'reference': ar[ar['Item'] == 'Maize'].Y2017.sum(), 'relative': True},
     domain = {'x': [0, 0.5], 'y': [0.5, 0]}))
 
 fig.add_trace(go.Indicator(
     mode = "number+delta",
-    value = pdd[pdd['Item'] == 'Grapefruit (inc. pomelos)'].Y2018.sum(),
+    value = pdd[pdd['Item'] == 'Maize'].Y2018.sum(),
     title = {"text": "Production<br><span style='font-size:0.8em;color:gray'>in</span><br><span style='font-size:0.8em;color:gray'>Tonnes</span>"},
-    delta = {'reference': pdd[pdd['Item'] == 'Grapefruit (inc. pomelos)'].Y2017.sum(), 'relative': True},
+    delta = {'reference': pdd[pdd['Item'] == 'Maize'].Y2017.sum(), 'relative': True},
     domain = {'x': [0.5, 1], 'y': [0, 1]}))
 
 fig.add_trace(go.Indicator(
     mode = "number+delta",
-    value = yy[yy['Item'] == 'Grapefruit (inc. pomelos)'].Y2018.sum() / 10000,
+    value = yy[yy['Item'] == 'Maize'].Y2018.sum() / 10000,
     title = {"text": "Yield<br><span style='font-size:0.8em;color:gray'>in</span><br><span style='font-size:0.8em;color:gray'>Tonne per Hectare</span>"},
-    delta = {'reference': yy[yy['Item'] == 'Grapefruit (inc. pomelos)'].Y2017.sum()/10000, 'relative': True},
+    delta = {'reference': yy[yy['Item'] == 'Maize'].Y2017.sum()/10000, 'relative': True},
     domain = {'x': [0.5, 0], 'y': [1, 0.5]}))
 
-fig1 = country_info('Somalia', item='Grapefruit (inc. pomelos)').iplot(asFigure = True, kind = 'bar', barmode = 'overlay', x = 'Years', y = 'Area harvested',
+fig1 = country_info('Somalia', item='Maize').iplot(asFigure = True, kind = 'bar', barmode = 'overlay', x = 'Years', y = 'Area harvested',
                                               yTitle = 'Years', xTitle = 'Area Harvested (Hectares)', theme = 'polar', colorscale = 'prgn', orientation = 'h')
 
-fig2 = country_info('Somalia', item='Grapefruit (inc. pomelos)').iplot(asFigure = True, kind = 'scatter', mode = 'lines', x = 'Years', y = 'Production',
-                                              xTitle = 'Years', yTitle = 'Tonnes', theme = 'polar',subplots = True,subplot_titles = True,colors = '#AD1A31', title = 'Grapefruit (inc. pomelos) Production in Somalia from 2014 - 2018')
+fig2 = country_info('Somalia', item='Maize').iplot(asFigure = True, kind = 'scatter', mode = 'lines', x = 'Years', y = 'Production',
+                                              xTitle = 'Years', yTitle = 'Tonnes', theme = 'polar',subplots = True,subplot_titles = True,colors = '#AD1A31', title = 'Maize Production in Somalia from 2014 - 2018')
 
-fig3 = px.scatter_mapbox(total_element('production','Grapefruit (inc. pomelos)'), lat='Lat',lon='Lon',color='Total',hover_name='Area',size = 'Total',
+fig3 = px.scatter_mapbox(total_element('production','Maize'), lat='Lat',lon='Lon',color='Total',hover_name='Area',size = 'Total',
                         hover_data={'Lat':False, 'Lon':False}, labels = {'Area':'Element'}, color_continuous_scale=colors,
-                        zoom=1.4, width=1900, height=700, template='presentation',center=None, mapbox_style='light',title='Global Grapefruit (inc. pomelos) Production in Tonnes(2014-2018)')
+                        zoom=1.4, width=1900, height=700, template='presentation',center=None, mapbox_style='light',title='Global Maize Production in Tonnes(2014-2018)')
 
-fig4 = bean[bean['Element'] == 'Production'].iplot(asFigure = True, kind = 'pie', labels = 'Area', values = 'Y2018', legend = False,textinfo = 'label+percent',theme = 'polar', hole = .6, linecolor = 'white', colors = colors, linewidth = .5, title = 'Grapefruit (inc. pomelos) Production in Africa as at 2018')
-fig5 = country_info('Somalia', item='Grapefruit (inc. pomelos)').iplot(asFigure = True, kind = 'scatter', mode = 'lines+markers', x = 'Years', y = 'Yield',subplots = True,subplot_titles = True,xTitle = 'Years', yTitle = 'Tonne per Hectare', title = 'Grapefruit (inc. pomelos) Yield for Somalia (2014 - 2018)', colorscale = 'puor', theme = 'polar', interpolation = 'spline')
-fig6 = country_info('Somalia', item='Grapefruit (inc. pomelos)').iplot(asFigure = True, kind = 'barh', x = 'Years', y = 'Area harvested', yTitle = 'Years', subplots = True,subplot_titles = True,xTitle = 'in Hectares', title = 'Area Harvested in Somalia', theme = 'polar', colorscale = 'piyg')
+fig4 = data[data['Element'] == 'Production'].iplot(asFigure = True, kind = 'pie', labels = 'Area', values = 'Y2018', legend = False,textinfo = 'label+percent',theme = 'polar', hole = .6, linecolor = 'white', colors = colors, linewidth = .5, title = 'Maize Production in Africa as at 2018')
+fig5 = country_info('Somalia', item='Maize').iplot(asFigure = True, kind = 'scatter', mode = 'lines+markers', x = 'Years', y = 'Yield',subplots = True,subplot_titles = True,xTitle = 'Years', yTitle = 'Tonne per Hectare', title = 'Maize Yield for Somalia (2014 - 2018)', colorscale = 'puor', theme = 'polar', interpolation = 'spline')
+fig6 = country_info('Somalia', item='Maize').iplot(asFigure = True, kind = 'barh', x = 'Years', y = 'Area harvested', yTitle = 'Years', subplots = True,subplot_titles = True,xTitle = 'in Hectares', title = 'Area Harvested in Somalia', theme = 'polar', colorscale = 'piyg')
 
 layout = html.Div([
     dbc.Container([
         dbc.Row([
-                dbc.Col(html.H1('World Grapefruit Statistics as at 2018', className='text-center'), className='mb-4 mt-5')
+                dbc.Col(html.H1('World Maize Statistics as at 2018', className='text-center'), className='mb-4 mt-5')
             ]),
         dbc.Row(
             dbc.Col(html.Div([
-                    dcc.Graph(id = 'Chart18',
+                    dcc.Graph(id = 'Chart36',
                             figure = fig,
                             animate = True,
                             responsive = True,
@@ -133,7 +135,7 @@ layout = html.Div([
     ], fluid=True),
         dbc.Row(
             dbc.Col(html.Div([
-                    dcc.Graph(id = 'Chart19',
+                    dcc.Graph(id = 'Chart37',
                             figure = fig3,
                             responsive = 'auto',
                             animate = True,
@@ -144,7 +146,7 @@ layout = html.Div([
                             })], style = {'font-variant':'small-caps','font-weight':'bold'}),width=12), style={'font-variant':'small-caps','font-weight':'bold'}),
         dbc.Row([
             dbc.Col(html.Div([
-                        dcc.Graph(id = 'Chart20',
+                        dcc.Graph(id = 'Chart38',
                                 figure = fig2,
                                 responsive = True,
                                 animate = True,
@@ -154,7 +156,7 @@ layout = html.Div([
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align='center'),
             dbc.Col(html.Div([
-                        dcc.Graph(id = 'Chart21',
+                        dcc.Graph(id = 'Chart39',
                                 figure = fig4,
                                 responsive = True,
                                 animate = True,
@@ -168,7 +170,7 @@ layout = html.Div([
 
         dbc.Row([
             dbc.Col(html.Div([
-                        dcc.Graph(id = 'Chart22',
+                        dcc.Graph(id = 'Chart40',
                                 figure = fig6,
                                 responsive = True,
                                 animate = True,
@@ -178,7 +180,7 @@ layout = html.Div([
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6),
             dbc.Col(html.Div([
-                        dcc.Graph(id = 'Chart23',
+                        dcc.Graph(id = 'Chart41',
                                 figure = fig5,
                                 responsive = True,
                                 animate = True,

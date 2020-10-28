@@ -5,14 +5,14 @@ import dash_bootstrap_components as dbc
 from app import server
 from app import app
 # import all pages in the app
-from apps import banana,home,bean,grapefruit
+from apps import banana,home,bean,grapefruit,cassava,lemon,maize,sesame,sorghum,sugarcane
 
 ##
 
 ##
 # building the navigation bar
 nav_item = dbc.NavItem(dbc.NavLink("Home", href='/home'))
-navitem = dbc.NavItem(dbc.NavLink("BlueXpress Technologies", href='https://blueexpress.vercel.app/'))
+navitem = dbc.NavItem(dbc.NavLink("BlueXpress Technologies", style = {'font-varianr':'small-caps','font-weight':'bold'},href='https://blueexpress.vercel.app/'))
 # make a dropdown for the different pages
 dropdown = dbc.DropdownMenu(
     children=[
@@ -90,20 +90,20 @@ def display_page(pathname):
         return banana.layout
     elif pathname == '/bean':
         return bean.layout
-    #elif pathname == '/cassava':
-    #    return cassava.layout
+    elif pathname == '/cassava':
+        return cassava.layout
     elif pathname == '/grapefruit':
         return grapefruit.layout
-    #elif pathname == '/lemon':
-    #    return lemon.layout
-    #elif pathname == '/sugarcane':
-    #    return sugarcane.layout
-    #elif pathname == '/sesame':
-    #    return sesame.layout
-    #elif pathname == '/sorghum':
-    #    return sorghum.layout 
-    #elif pathname == '/maize':
-    #    return maize.layout
+    elif pathname == '/lemon':
+        return lemon.layout
+    elif pathname == '/sugarcane':
+        return sugarcane.layout
+    elif pathname == '/sesame':
+        return sesame.layout
+    elif pathname == '/sorghum':
+        return sorghum.layout 
+    elif pathname == '/maize':
+        return maize.layout
     else:
         return home.layout
 
