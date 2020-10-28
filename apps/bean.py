@@ -21,21 +21,24 @@ drop = ['Unnamed: 0', 'Area Code', 'Area', 'Item Code','Element Code','Y1961', '
             'Y1980', 'Y1981', 'Y1982','Y1983', 'Y1984', 'Y1985', 'Y1986', 'Y1987', 'Y1988', 'Y1989', 'Y1990','Y1991', 'Y1992',
             'Y1993', 'Y1994', 'Y1995', 'Y1996', 'Y1997', 'Y1998','Y1999', 'Y2000', 'Y2001', 'Y2002', 'Y2003', 'Y2004', 'Y2005',
             'Y2006','Y2007', 'Y2008','Y2009', 'Y2010', 'Y2011', 'Y2012', 'Y2013']
-def world_clean(drop,option = None):
+def confirm_option_value(value, dataframe):
+    if value == 'area':
+         return dataframe[dataframe['Element'] == 'Area harvested']
+    elif value  == 'yield':
+        y = dataframe[dataframe['Element'] == 'Yield']
+        y['Total'] = y['Total'] / 10000
+        return y
+    elif value  == 'production':
+        return dataframe[dataframe['Element'] == 'Production']
+
+def world_clean(value,drop):
     world1 = world.drop(drop, axis = 1)
     total = world1.sum(axis = 1)
     world1['Total'] = total
-    if option == 'area':
-        return world1[world1['Element'] == 'Area harvested']
-    elif option == 'yield':
-        y = world1[world1['Element'] == 'Yield']
-        y['Total'] = y['Total'] / 10000
-        return y
-    elif option == 'production':
-        return world1[world1['Element'] == 'Production']
-ar=world_clean(drop=drop, option = 'area')
-pdd=world_clean(drop =drop, option = 'production')
-yy=world_clean(drop=drop, option='yield')
+    return confirm_option_value(value, world1)
+ar=world_clean('area',drop=drop)
+pdd=world_clean('production',drop =drop)
+yy=world_clean('yield',drop=drop)
 def country_info(country, item = None): #option = None):
     '''Function for producing country information
     '''
@@ -57,7 +60,7 @@ def country_info(country, item = None): #option = None):
     new_df['Yield'] = new_df['Yield'] / 10000
     return new_df
 
-def total_element(item = None, option = None):
+def total_element(value,item = None):
     '''Function for producing crop information
     '''
     ## Selecting specific item
@@ -71,16 +74,7 @@ def total_element(item = None, option = None):
     ittem['Lat'] = lat
     ittem['Lon'] = lon
     ## Filtering elements
-    if option == 'area':
-        ar = ittem[ittem['Element'] == 'Area harvested']
-        return ar
-    elif option == 'yield':
-        yy = ittem[ittem['Element'] == 'Yield']
-        yy['Total'] = yy['Total'] / 10000
-        return yy
-    elif option == 'production':
-        pdd = ittem[ittem['Element'] == 'Production']
-        return pdd
+    return confirm_option_value(value, ittem)
 
 data = pd.read_csv('data/beans.csv')
 colors = ['#133F54','#29AEB4','#B3CBB9','#F14B5B','#CA2E44']
@@ -113,7 +107,7 @@ fig1 = country_info('Somalia', item='Beans, dry').iplot(asFigure = True, kind = 
 fig2 = country_info('Somalia', item='Beans, dry').iplot(asFigure = True, kind = 'bar', barmode = 'overlay', x = 'Years', y = 'Production',
                                               xTitle = 'Years', yTitle = 'Tonnes', theme = 'polar',subplots = True,subplot_titles = True,colors = '#AD1A31', title = 'Beans Production in Somalia from 2014 - 2018')
 
-fig3 = px.scatter_mapbox(total_element('Beans, dry','production'), lat='Lat',lon='Lon',color='Total',hover_name='Area',size = 'Total',
+fig3 = px.scatter_mapbox(total_element('production','Beans, dry'), lat='Lat',lon='Lon',color='Total',hover_name='Area',size = 'Total',
                         hover_data={'Lat':False, 'Lon':False}, labels = {'Area':'Element'}, color_continuous_scale=colors,
                         zoom=1.4, width=1900, height=700, template='presentation',center=None, mapbox_style='light',title='Global Beans Production in Tonnes(2014-2018)')
 
