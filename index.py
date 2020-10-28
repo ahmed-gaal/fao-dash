@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 from app import server
 from app import app
 # import all pages in the app
-from apps import banana,home
+from apps import banana,home,lemon,grapefruit,sugarcane
 
 ##
 
