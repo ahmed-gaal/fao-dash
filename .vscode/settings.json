@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "fao/bin/python"
+    "python.pythonPath": "fao/bin/python",
+    "python.linting.enabled": true
 }

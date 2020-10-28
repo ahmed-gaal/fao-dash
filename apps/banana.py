@@ -110,9 +110,12 @@ fig3 = px.scatter_mapbox(total_element('production','Bananas'), lat='Lat',lon='L
                         hover_data={'Lat':False, 'Lon':False}, labels = {'Area':'Element'}, color_continuous_scale=colors,
                         zoom=1.4, width=1900, height=700, template='presentation',center=None, mapbox_style='light',title='Global Banana Production in Tonnes(2014-2018)')
 
-fig4 = data[data['Element'] == 'Production'].iplot(asFigure = True, kind = 'pie', labels = 'Area', values = 'Y2018', legend = False,textinfo = 'label+percent',theme = 'polar', hole = .6, linecolor = 'white', colors = colors, linewidth = .5, title = 'Banana Production in Africa as at 2018')
-fig5 = country_info('Somalia', item='Bananas').iplot(asFigure = True, kind = 'scatter', mode = 'lines+markers', x = 'Years', y = 'Yield',subplots = True,subplot_titles = True,xTitle = 'Years', yTitle = 'Tonne per Hectare', title = 'Banana Yield for Somalia (2014 - 2018)', colorscale = 'puor', theme = 'polar', interpolation = 'spline')
-fig6 = country_info('Somalia', item='Bananas').iplot(asFigure = True, kind = 'barh', x = 'Years', y = 'Area harvested', yTitle = 'Years', subplots = True,subplot_titles = True,xTitle = 'in Hectares', title = 'Area Harvested in Somalia', theme = 'polar', colorscale = 'piyg')
+fig4 = data[data['Element'] == 'Production'].iplot(asFigure = True, kind = 'pie', labels = 'Area', values = 'Y2018', legend = False,textinfo = 'label+percent',
+    theme = 'polar', hole = .6, linecolor = 'white', colors = colors, linewidth = .5, title = 'Banana Production in Africa as at 2018')
+fig5 = country_info('Somalia', item='Bananas').iplot(asFigure = True, kind = 'scatter', mode = 'lines+markers', x = 'Years', y = 'Yield',subplots = True,
+    subplot_titles = True,xTitle = 'Years', yTitle = 'Tonne per Hectare', title = 'Banana Yield for Somalia (2014 - 2018)', colorscale = 'puor', theme = 'polar', interpolation = 'spline')
+fig6 = country_info('Somalia', item='Bananas').iplot(asFigure = True, kind = 'barh', x = 'Years', y = 'Area harvested', yTitle = 'Years',
+    subplots = True,subplot_titles = True,xTitle = 'in Hectares', title = 'Area Harvested in Somalia', theme = 'polar', colorscale = 'piyg')
 
 layout = html.Div([
     dbc.Container([
