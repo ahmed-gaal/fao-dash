@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 from app import server
 from app import app
 # import all pages in the app
-from apps import banana,bean,cassava,home,sugarcane,grapefruit,lemon,sesame,maize,sorghum
+from apps import banana,home
 
 ##
 
@@ -88,22 +88,22 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/banana':
         return banana.layout
-    elif pathname == '/bean':
-        return bean.layout
-    elif pathname == '/cassava':
-        return cassava.layout
-    elif pathname == '/grapefruit':
-        return grapefruit.layout
-    elif pathname == '/lemon':
-       return lemon.layout
-    elif pathname == '/sugarcane':
-        return sugarcane.layout
-    elif pathname == '/sesame':
-        return sesame.layout
-    elif pathname == '/sorghum':
-        return sorghum.layout 
-    elif pathname == '/maize':
-        return maize.layout
+    #elif pathname == '/bean':
+    #    return bean.layout
+    #elif pathname == '/cassava':
+    #    return cassava.layout
+    #elif pathname == '/grapefruit':
+    #    return grapefruit.layout
+    #elif pathname == '/lemon':
+    #   return lemon.layout
+    #elif pathname == '/sugarcane':
+    #    return sugarcane.layout
+    #elif pathname == '/sesame':
+    #    return sesame.layout
+    #elif pathname == '/sorghum':
+    #    return sorghum.layout 
+    #elif pathname == '/maize':
+    #    return maize.layout
     else:
         return home.layout
 
