@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 from app import server
 from app import app
 # import all pages in the app
-from apps import banana,home,bean
+from apps import banana,home,bean,grapefruit
 
 ##
 
@@ -92,8 +92,8 @@ def display_page(pathname):
         return bean.layout
     #elif pathname == '/cassava':
     #    return cassava.layout
-    #elif pathname == '/grapefruit':
-    #    return grapefruit.layout
+    elif pathname == '/grapefruit':
+        return grapefruit.layout
     #elif pathname == '/lemon':
     #    return lemon.layout
     #elif pathname == '/sugarcane':
