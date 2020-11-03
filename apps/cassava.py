@@ -141,7 +141,8 @@ layout = html.Div([
                                 'showTips':True,
                                 'displaylogo':False,
                                 'scrollZoom':False
-                            })], style = {'font-variant':'small-caps','font-weight':'bold'}),width=12), style={'font-variant':'small-caps','font-weight':'bold'}),
+                            })], style = {'font-variant':'small-caps','font-weight':'bold'}),width=12),
+                            style={'font-variant':'small-caps','font-weight':'bold'}),
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart14',
