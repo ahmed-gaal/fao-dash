@@ -1,80 +1,95 @@
-import pandas as pd 
+import pandas as pd
 import cufflinks as cf
-import plotly.graph_objects as go 
-import plotly.express as px 
-import dash_core_components as dcc 
-import dash
-import dash_bootstrap_components as dbc 
-import dash_html_components as html 
+import dash_bootstrap_components as dbc
+import dash_html_components as html
+import dash_core_components as dcc
 import os
+import plotly.express as px
+import plotly.graph_objects as go
 
 px.set_mapbox_access_token(os.environ.get('TOKEN'))
 dff = pd.read_excel('data/dff.xlsx')
-dff.drop(columns = ['Unnamed: 0','Area Code','Item Code','Element Code'], inplace = True)
-dff.drop_duplicates(subset=['Y2014','Y2015','Y2016','Y2017','Y2018'], inplace = True)
+dff.drop(columns=['Unnamed: 0', 'Area Code', 'Item Code', 'Element Code'],
+         inplace=True)
+dff.drop_duplicates(subset=['Y2014', 'Y2015', 'Y2016', 'Y2017', 'Y2018'],
+                    inplace=True)
 area = dff[dff['Element'] == 'Area harvested']
 yield1 = dff[dff['Element'] == 'Yield']
 prod = dff[dff['Element'] == 'Production']
 world = pd.read_excel('data/world.xlsx')
-drop = ['Unnamed: 0', 'Area Code', 'Area', 'Item Code','Element Code','Y1961', 'Y1962', 'Y1963', 'Y1964', 'Y1965', 'Y1966',
-            'Y1967', 'Y1968', 'Y1969', 'Y1970', 'Y1971', 'Y1972', 'Y1973', 'Y1974','Y1975', 'Y1976', 'Y1977', 'Y1978', 'Y1979',
-            'Y1980', 'Y1981', 'Y1982','Y1983', 'Y1984', 'Y1985', 'Y1986', 'Y1987', 'Y1988', 'Y1989', 'Y1990','Y1991', 'Y1992',
-            'Y1993', 'Y1994', 'Y1995', 'Y1996', 'Y1997', 'Y1998','Y1999', 'Y2000', 'Y2001', 'Y2002', 'Y2003', 'Y2004', 'Y2005',
-            'Y2006','Y2007', 'Y2008','Y2009', 'Y2010', 'Y2011', 'Y2012', 'Y2013']
+drop = ['Unnamed: 0', 'Area Code', 'Area', 'Item Code', 'Element Code',
+        'Y1961', 'Y1962', 'Y1963', 'Y1964', 'Y1965', 'Y1966', 'Y1967',
+        'Y1968', 'Y1969', 'Y1970', 'Y1971', 'Y1972', 'Y1973', 'Y1974',
+        'Y1975', 'Y1976', 'Y1977', 'Y1978', 'Y1979', 'Y1980', 'Y1981',
+        'Y1982', 'Y1983', 'Y1984', 'Y1985', 'Y1986', 'Y1987', 'Y1988',
+        'Y1989', 'Y1990', 'Y1991', 'Y1992', 'Y1993', 'Y1994', 'Y1995',
+        'Y1996', 'Y1997', 'Y1998', 'Y1999', 'Y2000', 'Y2001', 'Y2002',
+        'Y2003', 'Y2004', 'Y2005', 'Y2006', 'Y2007', 'Y2008', 'Y2009',
+        'Y2010', 'Y2011', 'Y2012', 'Y2013']
+
+
 def confirm_option_value(value, dataframe):
     if value == 'area':
-         return dataframe[dataframe['Element'] == 'Area harvested']
-    elif value  == 'yield':
+        return dataframe[dataframe['Element'] == 'Area harvested']
+    elif value == 'yield':
         y = dataframe[dataframe['Element'] == 'Yield']
         y['Total'] = y['Total'] / 10000
         return y
-    elif value  == 'production':
+    elif value == 'production':
         return dataframe[dataframe['Element'] == 'Production']
-def world_clean(value,drop):
-    world1 = world.drop(drop, axis = 1)
-    total = world1.sum(axis = 1)
+
+
+def world_clean(value, drop=drop):
+    world1 = world.drop(drop, axis=1)
+    total = world1.sum(axis=1)
     world1['Total'] = total
     return confirm_option_value(value, world1)
-ar=world_clean('area',drop=drop)
-pdd=world_clean('production',drop =drop)
-yy=world_clean('yield',drop=drop)
-def country_info(country, item = None): #option = None):
+
+
+ar = world_clean('area', drop=drop)
+pdd = world_clean('production', drop=drop)
+yy = world_clean('yield', drop=drop)
+
+
+def country_info(country, item=None):
     '''Function for producing country information
     '''
-    ## Selecting specific country
+    # Selecting specific country
     som = dff[dff['Area'] == country]
     lat = som['Lat']
     lon = som["Lon"]
-    somm = som.drop(['Lat','Lon'], axis = 1)
-    ## Summing up the totals
-    total = somm.sum(axis = 1)
+    somm = som.drop(['Lat', 'Lon'], axis=1)
+    # Summing up the totals
+    total = somm.sum(axis=1)
     somm['Total'] = total
     somm['Lat'] = lat
     somm['Lon'] = lon
-    ## ruling out specific item
+    # ruling out specific item
     itm = somm[somm['Item'] == item]
-    years = ['Y2014','Y2015','Y2016','Y2017','Y2018']
+    years = ['Y2014', 'Y2015', 'Y2016', 'Y2017', 'Y2018']
     new_df = itm.groupby('Element')[years].sum().transpose()
     new_df['Years'] = years
     new_df['Yield'] = new_df['Yield'] / 10000
     return new_df
 
-def total_element(value,item = None):
+
+def total_element(value, item=None):
     '''Function for producing crop information
     '''
-    ## Selecting specific item
+    # Selecting specific item
     lot = dff[dff['Item'] == item]
     lat = lot['Lat']
     lon = lot["Lon"]
-    ittem = lot.drop(['Lat','Lon'], axis = 1)
-    ## Summing up the totals
-    total = ittem.sum(axis = 1)
+    ittem = lot.drop(['Lat', 'Lon'], axis=1)
+    # Summing up the totals
+    total = ittem.sum(axis=1)
     ittem['Total'] = total
     ittem['Lat'] = lat
     ittem['Lon'] = lon
-    ## Filtering elements
+    # Filtering elements
     return confirm_option_value(value, ittem)
 
+    
 data = pd.read_csv('data/sim.csv')
 colors = ['#BD3F68','#121C1A','#23E1F0','#F14B5B','#E52C25']
 fig = go.Figure()
@@ -82,37 +97,89 @@ fig = go.Figure()
 fig.add_trace(go.Indicator(
     mode = "number+delta",
     value = ar[ar['Item'] == 'Sesame seed'].Y2018.sum(),
-    title = {"text": "Area Harvested<br><span style='font-size:0.8em;color:gray'>in</span><br><span style='font-size:0.8em;color:gray'>Hectares</span>"},
-    delta = {'reference': ar[ar['Item'] == 'Sesame seed'].Y2017.sum(), 'relative': True},
+    title = {
+        "text": "Area Harvested<br><span style='font-size\
+                :0.8em;color:gray'>in</span><br><span style='font-size\
+                :0.8em;color:gray'>Hectares</span>"
+    },
+    delta = {
+        'reference': ar[ar['Item'] == 'Sesame seed'].Y2017.sum(),\
+            'relative': True
+    },
     domain = {'x': [0, 0.5], 'y': [0.5, 0]}))
 
 fig.add_trace(go.Indicator(
     mode = "number+delta",
     value = pdd[pdd['Item'] == 'Sesame seed'].Y2018.sum(),
-    title = {"text": "Production<br><span style='font-size:0.8em;color:gray'>in</span><br><span style='font-size:0.8em;color:gray'>Tonnes</span>"},
-    delta = {'reference': pdd[pdd['Item'] == 'Sesame seed'].Y2017.sum(), 'relative': True},
+    title = {
+        "text": "Production<br><span style='font-size:0.8em;\
+                color:gray'>in</span><br><span style='font-size\
+                :0.8em;color:gray'>Tonnes</span>"
+    },
+    delta = {
+        'reference': pdd[pdd['Item'] == 'Sesame seed'].Y2017.sum(),\
+            'relative': True
+    },
     domain = {'x': [0.5, 1], 'y': [0, 1]}))
 
 fig.add_trace(go.Indicator(
     mode = "number+delta",
     value = yy[yy['Item'] == 'Sesame seed'].Y2018.sum() / 10000,
-    title = {"text": "Yield<br><span style='font-size:0.8em;color:gray'>in</span><br><span style='font-size:0.8em;color:gray'>Tonne per Hectare</span>"},
-    delta = {'reference': yy[yy['Item'] == 'Sesame seed'].Y2017.sum()/10000, 'relative': True},
+    title = {
+        "text": "Yield<br><span style='font-size:0.8em\
+                ;color:gray'>in</span><br><span style='font-size:0.8em\
+                ;color:gray'>Tonne per Hectare</span>"
+    },
+    delta = {
+        'reference': yy[yy['Item'] == 'Sesame seed'].Y2017.sum()/10000,\
+            'relative': True
+    },
     domain = {'x': [0.5, 0], 'y': [1, 0.5]}))
 
-fig1 = country_info('Somalia', item='Sesame seed').iplot(asFigure = True, kind = 'bar', barmode = 'overlay', x = 'Years', y = 'Area harvested',
-                                              yTitle = 'Years', xTitle = 'Area Harvested (Hectares)', theme = 'polar', colorscale = 'prgn', orientation = 'h')
 
-fig2 = country_info('Somalia', item='Sesame seed').iplot(asFigure = True, kind = 'scatter', mode = 'lines', x = 'Years', y = 'Production',
-                                              xTitle = 'Years', yTitle = 'Tonnes', theme = 'polar',subplots = True,subplot_titles = True,colors = '#AD1A31', title = 'Sesame seed Production in Somalia from 2014 - 2018')
+def bar_graph(x=None, y=None, xTitle=None, yTitle=None, title=None, how=None,
+              colors=None):
+    df = country_info('Somalia', item='Sesame seed')
+    fig = df.iplot(asFigure=True, kind='bar', x=x, y=y, yTitle=yTitle,
+                   xTitle=xTitle, theme='polar', subplots=True,
+                   subplot_titles=True, title=title, colors=colors,
+                   orientation=how)
+    return fig
 
-fig3 = px.scatter_mapbox(total_element('production','Sesame seed'), lat='Lat',lon='Lon',color='Total',hover_name='Area',size = 'Total',
-                        hover_data={'Lat':False, 'Lon':False}, labels = {'Area':'Element'}, color_continuous_scale=colors,
-                        zoom=1.4, width=1900, height=700, template='presentation',center=None, mapbox_style='light',title='Global Sesame seed Production in Tonnes(2014-2018)')
 
-fig4 = data[data['Element'] == 'Production'].iplot(asFigure = True, kind = 'pie', labels = 'Area', values = 'Y2018', legend = False,textinfo = 'label+percent',theme = 'polar', hole = .6, linecolor = 'white', colors = colors, linewidth = .5, title = 'Sesame seed Production in Africa as at 2018')
-fig5 = country_info('Somalia', item='Sesame seed').iplot(asFigure = True, kind = 'scatter', mode = 'lines+markers', x = 'Years', y = 'Yield',subplots = True,subplot_titles = True,xTitle = 'Years', yTitle = 'Tonne per Hectare', title = 'Sesame seed Yield for Somalia (2014 - 2018)', colorscale = 'puor', theme = 'polar', interpolation = 'spline')
-fig6 = country_info('Somalia', item='Sesame seed').iplot(asFigure = True, kind = 'barh', x = 'Years', y = 'Area harvested', yTitle = 'Years', subplots = True,subplot_titles = True,xTitle = 'in Hectares', title = 'Area Harvested in Somalia', theme = 'polar', colorscale = 'piyg')
+def line_graph(x=None, y=None, xTitle=None, yTitle=None, title=None, mode=None,
+               colors=None, scale=None, how=None):
+    df = country_info('Somalia', item='Sesame seed')
+    fig = df.iplot(asFigure=True, kind='scatter', mode=mode, x=x, y=y, xTitle=xTitle,
+                   yTitle=yTitle, subplots=True, subplot_titles=True, theme='polar',
+                   interpolation=how, title=title, colorscale=scale)
+    return fig
+
+
+fig1 = bar_graph(x='Years', y='Area harvested', xTitle='Area harvested', yTitle='Years',
+                 title='Area Harvested (Hectares)', how='h', colors='#AD1A31')
+
+fig2 = line_graph(x='Years', y='Production', xTitle='Years', yTitle='Tonnes',
+                  colors='#AD1A31',how='spline', mode='lines',
+                  title='Sesame seed Production in Somalia from 2014 - 2018')
+
+fig3 = px.scatter_mapbox(total_element('production', 'Sesame seed'), lat='Lat',
+                         lon='Lon', color='Total', hover_name='Area', size = 'Total',
+                         hover_data={'Lat':False, 'Lon':False}, labels = {'Area':'Element'},
+                         color_continuous_scale=colors, zoom=1.4, width=1900, height=700,
+                         template='presentation', center=None, mapbox_style='light',
+                         title='Global Sesame seed Production in Tonnes(2014-2018)')
+
+fig4 = data[data['Element'] == 'Production'].iplot(asFigure=True, kind='pie',
+                                                   labels='Area', values='Y2018',
+                                                   legend=False,textinfo='label+percent',
+                                                   theme='polar', hole=.6, linecolor='white',
+                                                   colors=colors, linewidth=.5,
+                                                   title='Sesame seed Production in Africa as at 2018')
+
+fig5 = line_graph(x='Years', y='Yield', xTitle='Years', yTitle='Tonne per hectare',
+                  title='Sesame seed Yield for Somalia (2014 - 2018)', mode='lines+markers',
+                  scale='puor', how='spline')
 
 layout = html.Div([
     dbc.Container([
@@ -169,7 +236,7 @@ layout = html.Div([
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart46',
-                                figure = fig6,
+                                figure = fig1,
                                 responsive = True,
                                 animate = True,
                                 config = {

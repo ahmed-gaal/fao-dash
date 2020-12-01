@@ -1,3 +1,5 @@
+import time
+startTime = time.time()
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
@@ -106,6 +108,9 @@ def display_page(pathname):
         return maize.layout
     else:
         return home.layout
+
+execute = (time.time() - startTime)
+print(execute)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
