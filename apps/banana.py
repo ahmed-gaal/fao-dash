@@ -207,6 +207,16 @@ layout = html.Div([
                                 'scrollZoom':False
                             })], style={'font-variant':'small-caps','font-weight':'bold'}),width=12),
                             style={'font-variant':'small-caps','font-weight':'bold'}),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Banana Production in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id='Chart2',
@@ -226,9 +236,18 @@ layout = html.Div([
                             result a drop in production. As at 2017 we observed a 7.75% increase in Production.\
                             Production is set to increase exponentially due to torrential rains expected until 2021.',
                             style={
-                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'bold'
+                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
                             })), 
                             width=6)
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Banana Production in Africa.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
         ], className='row'),
         html.Hr(),
 
@@ -255,7 +274,15 @@ layout = html.Div([
             ], style={'font-variant':'small-caps','font-weight':'bold'}), width=6, align='center'),
         ], className='row'),
         html.Hr(),
-
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Banana Area harvested in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
         dbc.Row([
                         dbc.Col(html.Div([
                             dcc.Graph(id='Chart4',
@@ -276,18 +303,26 @@ layout = html.Div([
                             Throughout 2015-2016 was a challenging year for Somali Farmers due to the drought and \
                             Famine experienced during this time. As a result Area harvested decreased at a rate of 17.08%.\
                             2017 showed a little bit of hope of 7% increase in area harvested.', style={
-                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'bold'
+                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
                             })), width=6)
         ], className='row'),
         html.Hr(),
-
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Banana Yield in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
         dbc.Row([
                         dbc.Col(dbc.Container(html.P(children='The analysis performed on the Yield of Bananas in Somalia.\
                             As we can see, 2014 shows a Yield of 17.03 Tonnes per hectare and throughout to 2018 shows\
                             a steady increase in Yield even though there were mitigating factors during the year 2015 upto 2016.\
                             The conclusion of this analysis seems to indicate the Banana is a viable agricultural Product in Somalia\
                             and possesses a high market value both for local and international Markets.', style={
-                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'bold'
+                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
                             })), width=6),
 
                         dbc.Col(html.Div([
