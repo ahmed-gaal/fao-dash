@@ -218,6 +218,31 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps', 'font-weight':'bold'}), width=6, align='center'),
+
+            dbc.Col(dbc.Container(html.P(children='The analysis performed on the production of Bananas in Somalia has\
+                            been on steep decrease from 2014\
+                            until 2016 when it reached an all-time low of 19,897 metric tonnes.\
+                            This is true in that there was a period of famine in Somalia between 2015-2016 and as a\
+                            result a drop in production. As at 2017 we observed a 7.75% increase in Production.\
+                            Production is set to increase exponentially due to torrential rains expected until 2021.',
+                            style={
+                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'bold'
+                            })), 
+                            width=6)
+        ], className='row'),
+        html.Hr(),
+
+        dbc.Row([
+            dbc.Col(dbc.Container(html.P(children='The analysis performed on the Banana Production in Africa indicates\
+                            East Africa having the highest Production as at 2018 with a 53.5% followed by\
+                            Central Africa with a 25.6% Production.\
+                            This is accurate in that East Africa possesses optimal land for cultivating Bananas\
+                            and followed by Central Africa.\
+                            Southern Africa produced 2.21% of Bananas produced in 2018 which establishes\
+                            that Southern Africa is not suitable for Banana Production.', style={
+                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'bold'
+                            })), width=6),
+            
             dbc.Col(html.Div([
                         dcc.Graph(id='Chart3',
                                 figure=fig4,
@@ -232,7 +257,7 @@ layout = html.Div([
         html.Hr(),
 
         dbc.Row([
-                    dbc.Col(html.Div([
+                        dbc.Col(html.Div([
                             dcc.Graph(id='Chart4',
                                     figure=fig1,
                                     responsive=True,
@@ -243,6 +268,28 @@ layout = html.Div([
                                         })
                             ], style={'font-variant':'small-caps','font-weight':'bold'}),
                         width=6),
+                        dbc.Col(dbc.Container(html.P(children='The analysis performed on the Area harvested \
+                            for Banana in Somalia indicates that 2014 was the year that largest parcel of land\
+                            had been cultivated and harvested Bananas just shy of 1,400 hectares.\
+                            This shows that 2014 was the year Somalia experienced an influx of farmers producing\
+                            Bananas.\
+                            Throughout 2015-2016 was a challenging year for Somali Farmers due to the drought and \
+                            Famine experienced during this time. As a result Area harvested decreased at a rate of 17.08%.\
+                            2017 showed a little bit of hope of 7% increase in area harvested.', style={
+                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'bold'
+                            })), width=6)
+        ], className='row'),
+        html.Hr(),
+
+        dbc.Row([
+                        dbc.Col(dbc.Container(html.P(children='The analysis performed on the Yield of Bananas in Somalia.\
+                            As we can see, 2014 shows a Yield of 17.03 Tonnes per hectare and throughout to 2018 shows\
+                            a steady increase in Yield even though there were mitigating factors during the year 2015 upto 2016.\
+                            The conclusion of this analysis seems to indicate the Banana is a viable agricultural Product in Somalia\
+                            and possesses a high market value both for local and international Markets.', style={
+                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'bold'
+                            })), width=6),
+
                         dbc.Col(html.Div([
                                 dcc.Graph(id='Chart5',
                                         figure=fig5,
