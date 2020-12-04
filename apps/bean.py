@@ -209,6 +209,17 @@ layout = html.Div([
                                 'displaylogo':False,
                                 'scrollZoom':False
                             })], style = {'font-variant':'small-caps','font-weight':'bold'}),width=12), style={'font-variant':'small-caps','font-weight':'bold'}),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Beans Production in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+        
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart8',
@@ -220,6 +231,44 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align='center'),
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on the data shows a steady and constant increase\
+                        in the Production of Dry Beans. From 2014 to 2015 we observe a 3.1% increase in Production.\
+                        Keeping in mind the unforgiving drought and famine of 2015 to 2016, there was a 0.1% increase\
+                        in Production which is a positive result.\
+                        From 2017 throughout was smooth sailing for Beans producers as there was 2.9% increase in production.\
+                        The conclusion derived was that 2018 was the best year yet for Beans Producers.', style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            )
+        ], className='row'),
+        html.Hr(),
+
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Beans Production in Africa.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+
+        dbc.Row([
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='This analysis performed shows the Beans Production to be prevalent in Africa.\
+                        East Africa is observed to be the highest producers of beans. With a total of 4.8 million \
+                        metric tonnes produced as at 2018, East Africa claimed almost 70% of the Beans Production in Africa.\
+                        West, North and Southern Africa together produced almost 15% of Beans in Africa.\
+                        This shows that East Africa has a conducive environment for Beans Production.',
+                        style={
+                            'font-family':'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            ),
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart9',
                                 figure = fig4,
@@ -230,6 +279,16 @@ layout = html.Div([
                                     'displaylogo': False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align = 'center'),
+        ]),
+        html.Hr(),
+        
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Area Harvested in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
         ], className='row'),
         html.Hr(),
 
@@ -244,6 +303,42 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6),
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed shows that from 2014 to 2018 the Area from which beans \
+                        was harvested at a total of 431,719 hectares. Between 2015 to 2016 there was drought and famine\
+                        experienced in Somalia which resulted in a 0.1% decrease of Area harvested. From there onwards\
+                        the analysis performed observed a 1.5% increase in Area harvested.', style={
+                            'font-family':'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            )
+        ], className='row'),
+        html.Hr(),
+
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Beans Yield in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+
+        dbc.Row([
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on the data shows that as at 2014, the Yield of Beans was at an all\
+                        time high of 0.305 tonnes per hectare. By 2015, the Yield dropped exponentially by 3.7%. This was due to\
+                        mitigating factors such as famine and the already crippled security situation in Somalia. From 2016, the Yield\
+                        of beans was on an averag increase of 0.7%.\
+                        The conclusion arrived at during the course of this analysis was the beans is a cash crop and has a high market value locally.',
+                        style={
+                            'font-family':'Overpass, sans-serif', 'font-weight':'normal', 'font-size':'210%'
+                        })
+                ), width=6
+            ),
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart11',
                                 figure = fig5,

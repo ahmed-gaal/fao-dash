@@ -151,7 +151,7 @@ def line_graph(x=None, y=None, xTitle=None, yTitle=None, title=None, mode=None,
 
 
 fig1 = bar_graph(x='Years', y='Area harvested', xTitle='Area harvested', yTitle='Years',
-                 title='Area Harvested (Hectares)', how='h', colors='#914F9A')
+                 title='Area of Bananas Harvested (Hectares) in Somalia 2014-2018', how='h', colors='#914F9A')
 
 fig2 = line_graph(x='Years', y='Production', xTitle='Years', yTitle='Tonnes',
                   colors='#CD4E43',how='spline', mode='lines',
@@ -242,7 +242,7 @@ layout = html.Div([
                             that Southern Africa is not suitable for Banana Production.', style={
                                 'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'bold'
                             })), width=6),
-            
+
             dbc.Col(html.Div([
                         dcc.Graph(id='Chart3',
                                 figure=fig4,
