@@ -259,7 +259,7 @@ layout = html.Div([
                             and followed by Central Africa.\
                             Southern Africa produced 2.21% of Bananas produced in 2018 which establishes\
                             that Southern Africa is not suitable for Banana Production.', style={
-                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'bold'
+                                'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
                             })), width=6),
 
             dbc.Col(html.Div([

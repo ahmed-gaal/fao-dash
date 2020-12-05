@@ -198,7 +198,7 @@ layout = html.Div([
                             })], style = {'font-variant':'small-caps','font-weight':'bold'}), width = 12, align='center')
         )
     ], fluid=True),
-        dbc.Row(
+        dbc.Row([
             dbc.Col(html.Div([
                     dcc.Graph(id = 'Chart19',
                             figure = fig3,
@@ -208,7 +208,18 @@ layout = html.Div([
                                 'showTips':True,
                                 'displaylogo':False,
                                 'scrollZoom':False
-                            })], style = {'font-variant':'small-caps','font-weight':'bold'}),width=12), style={'font-variant':'small-caps','font-weight':'bold'}),
+                            })], style = {'font-variant':'small-caps','font-weight':'bold'}),width=12),
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='GrapeFruit Production in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart20',
@@ -220,6 +231,42 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align='center'),
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed shows that production of Grapefruits including pomelos was at\
+                        an all-time high in 2014 with an output of 6,165 metric tonnes. By 2015, the production of Grapefruits\
+                        experienced a drastic decrease of about 8.5%. The year 2016 observed a negligible increase of production\
+                        which shows that 2015-2016 was not the best year yet. From 2016-2018, Grapefruit farmers faced a decrease \
+                        in production which suggests local markets were not satisfied.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='GrapeFruit Production in Africa.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The total Grapefruits Production in Africa as at 2018 was 924,959 Metric Tonnes.\
+                        Southern Africa experienced an influx of Grapefruit Production claiming about 53.4% of total Grapefruits\
+                        produced in Africa. Northern Africa also experienced a decent production of about 344,000 metric tonnes.\
+                        The worst performed region was Central Africa which contributed to about 2.25% of production that year.\
+                        East Africa produced 40,000 metric tonnes which resulted in 4.3% of total Grapefruit Production in Africa.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            ),
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart21',
                                 figure = fig4,
@@ -231,8 +278,17 @@ layout = html.Div([
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align = 'center'),
         ], className='row'),
-        html.Hr(),
 
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='GrapeFruits Area Harvested in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart22',
@@ -244,6 +300,41 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6),
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on the available data showed that Area that Grapefruit was \
+                        harvested to be on a constant decrease from 2014 until 2018. From 2014 to 2015 experienced a drastic\
+                        fall of area harvested with a 8.4 % decrease. Further investigation needs to be undertaken to fully\
+                        understand the underlying reasons for the decline of the Area harvested in Somalia.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            )   
+        ], className='row'),
+
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='GrapeFruit Yield in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on the Yield of Grapefruits in Somalia showed a 1.2 % decrease\
+                        from 2014 to 2015. From 2015 to 2018 there was a constant increase in the Yield.\
+                        From 2015-2016 there was a 3.9% increase in the Yield of Grapefruits in Somalia and from 2016 to 2018\
+                        Somalia experienced a 1% increase in the Yield of Grapefruits.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            ),
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart23',
                                 figure = fig5,
