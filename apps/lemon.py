@@ -209,6 +209,16 @@ layout = html.Div([
                                 'displaylogo':False,
                                 'scrollZoom':False
                             })], style = {'font-variant':'small-caps','font-weight':'bold'}),width=12), style={'font-variant':'small-caps','font-weight':'bold'}),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Lemons and Limes Production in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart26',
@@ -220,6 +230,43 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align='center'),
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on the data showed that Lemons and Limes had been at an all-time low in 2014\
+                        with a production of 7,634 metric tonnes. By 2015, Somalia observed a 4.2% increase in Lemon production. This is\
+                        due to ample rainfall in 2015. In 2016, we recorded a production of 7,900 metric tonnes which is 0.7% decrease which\
+                        may be due to the drought season. From 2016 to 2018, we observed a steady increase in production which by 2018 there was\
+                        a production quantity of 7,960 metric tonnes. This was the best year yet for Lemon producers in Somalia.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Lemons and Limes Production in Africa.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on Lemons and limes production in Africa shows that Northern Africa performed\
+                        the best with a Production output of 836,910 metric tonnes. With Southern Africa producing just a little over 30%\
+                        of the total Lemons and limes production in Africa.\
+                        Central Africa did not perform well with a production output of a little over 15,000 metric tonnes. This suggests that\
+                        Lemons and limes have a viable market in the Central Africa.\
+                        Eastern Africa showed a 0.1% increase in production from 2017 to 2018.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            ),
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart27',
                                 figure = fig4,
@@ -231,8 +278,17 @@ layout = html.Div([
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align = 'center'),
         ], className='row'),
-        html.Hr(),
 
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Lemons and Limes Area Harvested in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart28',
@@ -244,6 +300,44 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6),
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on the Area harvested off Lemons and limes in Somalia\
+                        showed a steady and constant increase. In 2014, only 1,222 hectares of fertile land had lemons\
+                        harvested from. By 2018 there was a 7.4% increase in the Area harvested. This supports the \
+                        observation of the Production of Lemons in Somalia to be at its all-time high. This suggets that \
+                        Somalia has the viable land for Lemons and limes cultivation.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            )
+        ], className='row'),
+
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Lemons and Limes Yield in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on the data showed that the Yield of Lemons and limes in Somalia has been\
+                        decreasing from 2014 to 2018. It has been decreasing slowly at a constant rate of 0.7% per year except during \
+                        2015 to 2016 in which a 0.8% decrease was observed.\
+                        This is was due to the challenging times in Somalia where the agricultural hotspots and the country as a whole \
+                        experienced drought and famine.\
+                        The conclusion of this analyis is that more data is needed to be collected to further monitor the situation.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            ),
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart29',
                                 figure = fig5,

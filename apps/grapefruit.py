@@ -282,7 +282,7 @@ layout = html.Div([
         html.Hr(),
         dbc.Row([
             dbc.Col(
-                html.H2(children='GrapeFruits Area Harvested in Somalia.', style={
+                html.H2(children='GrapeFruit Area Harvested in Somalia.', style={
                 'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
             }),
                 width={'size':6, 'offset':4}
