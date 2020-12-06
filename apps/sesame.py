@@ -209,6 +209,17 @@ layout = html.Div([
                                 'displaylogo':False,
                                 'scrollZoom':False
                             })], style = {'font-variant':'small-caps','font-weight':'bold'}),width=12), style={'font-variant':'small-caps','font-weight':'bold'}),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Sesame Seed Production in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+        
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart44',
@@ -220,6 +231,44 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align='center'),
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on the Production of Sesame Seed in Somalia from 2014 to 2018\
+                        shows that a total of 129,616 metric tonnes was produced over the course of 5 years. The year with \
+                        the highest production was 2014 with a total output of 26,275 metric tonnes. By 2015, this value decreased\
+                        with a 1.1% and went on a further 0.8% decrease by 2016.\
+                        The year 2017 we observed an increase in production by 0.01% and a further 0.02% increase in production by 2018.\
+                        The poor production may have been caused by environmental factors.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Sesame Seed Production in Africa.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed shows that between 2014 to 2018 Eastern Africa has been the largest producer of Sesame seeds in\
+                        Africa. Over the course of 5 years, East Africa has produced a whopping 7.8 million metric tonnes with the United Republic\
+                        of Tanzania producing more than half of it making it the largest producer of Sesame seeds worldwide.\
+                        Northern and Western Africa performed fairly well with a 28.7% and 27.7% production as at 2018 respectively.\
+                        Central Africa performed poorly with a production rate of 6.7% as at 2018 and little over 1 million metric tonnes\
+                        over the course of 5 years.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            ),
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart45',
                                 figure = fig4,
@@ -229,10 +278,19 @@ layout = html.Div([
                                     'showTips': True,
                                     'displaylogo': False
                                 })
-            ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align = 'center'),
+            ], style={'font-variant':'small-caps','font-weight':'bold'}), width=6, align = 'center'),
+        ], className='row'),
+
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Sesame Seed Area Harvested in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
         ], className='row'),
         html.Hr(),
-
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart46',
@@ -244,6 +302,40 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6),
+            dbc.Col(
+                dbc.Container(
+                    html.P('The analysis performed on the Sesame seed Area harvested shows that over the course of 5 years,\
+                        the Area harvested slowly but steadily decreased. This may be due to environmental fators such as soil\
+                        fertlity, topography, water quality or climate change.\
+                        Further observations is required, hence we will continue to monitor the situation closely.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Sesame Seed Yield in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on the data provided shows that the Yield of Sesame seed in Somalia\
+                        has been on constant increase. From 2014 to 2015 we observed an increase in yield by 0.6%. From 2015 to 2016,\
+                        even though we experienced environmental factors such as drought and famine, a 0.4% increase in the yield was observed.\
+                        From 2017 to 2018 we observed a 0.7% increase in yield which amounts to 0.55 tonnes per hectare.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            ),
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart47',
                                 figure = fig5,
