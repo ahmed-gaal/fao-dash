@@ -209,6 +209,16 @@ layout = html.Div([
                                 'displaylogo':False,
                                 'scrollZoom':False
                             })], style = {'font-variant':'small-caps','font-weight':'bold'}),width=12), style={'font-variant':'small-caps','font-weight':'bold'}),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Maize Production in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart38',
@@ -220,6 +230,42 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align='center'),
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on the Production of Maize in Somalia shows that from 2014 to 2018, a total of\
+                        484,159 metric tonnes was observed. The best year for Maize producers in Somalia was 2018 with a Production just \
+                        shy of 140,000 metric tonnes.\
+                        The worst year for Maize Producers in Somalia was 2016 with an output of 63,251 metric tonnes. This suggests that the\
+                        drought and famine season in 2016 hit the Maize producers very hard.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Maize Production in Africa.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed on Maize Production in Africa puts Eastern Africa at the forefront of Maize production in Africa.\
+                        With a total of 28.9 million metric tonnes as at 2018, East Africa claims 36.7% of total Maize produced during 2018.\
+                        Western Africa performed fairly well with a production of 28.4% of total Maize produced in Africa as at 2018.\
+                        Northern and Central Africa performed very poorly with no more than an output of 15 million metric tonnes combined.\
+                        This suggets that Maize is a staple food in Eastern Africa.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            ),
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart39',
                                 figure = fig4,
@@ -232,7 +278,15 @@ layout = html.Div([
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6, align = 'center'),
         ], className='row'),
         html.Hr(),
-
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Maize Area Harvested in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
         dbc.Row([
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart40',
@@ -244,6 +298,40 @@ layout = html.Div([
                                     'displaylogo':False
                                 })
             ], style = {'font-variant':'small-caps','font-weight':'bold'}), width=6),
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis performed shows a total of 654,000 hectares was prepared, tilled, cultivated and harvested with\
+                        Maize from 2014 to 2018. The year with the most land cultivated with Maize was 2015 just shy of 200,000 hectares.\
+                        From 2015 to 2018 we observed a 49% drop in Area harvested for Maize in Somalia.\
+                        Further analysis is required to understand the drop in Area harvested and the increase of the Production and Yield of Maize in Somalia.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                html.H2(children='Maize Yield in Somalia.', style={
+                'font-family':'Overpass, sans-serif', 'font-size':'200%', 'font-weight':'bold'
+            }),
+                width={'size':6, 'offset':4}
+            )
+        ], className='row'),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col(
+                dbc.Container(
+                    html.P(children='The analysis shows that the Yield of Maize in Somalia. From 2014 to 2015 we observe a 17% drop\
+                        in the Yield of Maize. Consequently, we observe a 4.16% increase in yield during 2015 to 2016.\
+                        During 2016 to 2017 we observe an 11.1% increase in the yield.\
+                        From 2017 to 2018 we observe a 129.6% spike in the yield of Maize in Somalia which amounts to 1.5 tonnes per hectare.',
+                        style={
+                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
+                        })
+                ), width=6
+            ),
             dbc.Col(html.Div([
                         dcc.Graph(id = 'Chart41',
                                 figure = fig5,
