@@ -62,12 +62,6 @@ layout = html.Div([
                         for generating future decisons that are important for Crop Production.',
                         style={
                             'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
-                        }),
-                        html.Hr(),
-                    html.P(children='The Model Prediction System is still underway. The unforeseen delay has been\
-                        largely attributed to insufficient data for training sets.',
-                        style={
-                            'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
                         })
                 ])
             )
