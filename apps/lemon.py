@@ -6,6 +6,7 @@ import dash_html_components as html
 import dash_core_components as dcc
 import plotly.express as px
 import plotly.graph_objects as go
+from crops import Dashboard as dd
 
 px.set_mapbox_access_token(os.environ.get('TOKEN'))
 dff = pd.read_excel('data/dff.xlsx')
@@ -28,66 +29,9 @@ drop = ['Unnamed: 0', 'Area Code', 'Area', 'Item Code', 'Element Code',
         'Y2010', 'Y2011', 'Y2012', 'Y2013']
 
 
-def confirm_option_value(value, dataframe):
-    if value == 'area':
-        return dataframe[dataframe['Element'] == 'Area harvested']
-    elif value == 'yield':
-        y = dataframe[dataframe['Element'] == 'Yield']
-        y['Total'] = y['Total'] / 10000
-        return y
-    elif value == 'production':
-        return dataframe[dataframe['Element'] == 'Production']
-
-
-def world_clean(value, drop=drop):
-    world1 = world.drop(drop, axis=1)
-    total = world1.sum(axis=1)
-    world1['Total'] = total
-    return confirm_option_value(value, world1)
-
-
-ar = world_clean('area', drop=drop)
-pdd = world_clean('production', drop=drop)
-yy = world_clean('yield', drop=drop)
-
-
-def country_info(country, item=None):
-    '''Function for producing country information
-    '''
-    # Selecting specific country
-    som = dff[dff['Area'] == country]
-    lat = som['Lat']
-    lon = som["Lon"]
-    somm = som.drop(['Lat', 'Lon'], axis=1)
-    # Summing up the totals
-    total = somm.sum(axis=1)
-    somm['Total'] = total
-    somm['Lat'] = lat
-    somm['Lon'] = lon
-    # ruling out specific item
-    itm = somm[somm['Item'] == item]
-    years = ['Y2014', 'Y2015', 'Y2016', 'Y2017', 'Y2018']
-    new_df = itm.groupby('Element')[years].sum().transpose()
-    new_df['Years'] = years
-    new_df['Yield'] = new_df['Yield'] / 10000
-    return new_df
-
-
-def total_element(value, item=None):
-    '''Function for producing crop information
-    '''
-    # Selecting specific item
-    lot = dff[dff['Item'] == item]
-    lat = lot['Lat']
-    lon = lot["Lon"]
-    ittem = lot.drop(['Lat', 'Lon'], axis=1)
-    # Summing up the totals
-    total = ittem.sum(axis=1)
-    ittem['Total'] = total
-    ittem['Lat'] = lat
-    ittem['Lon'] = lon
-    # Filtering elements
-    return confirm_option_value(value, ittem)
+ar = dd.world_clean('area', drop=drop)
+pdd = dd.world_clean('production', drop=drop)
+yy = dd.world_clean('yield', drop=drop)
 
     
 data = pd.read_csv('data/liin.csv')
@@ -137,33 +81,14 @@ fig.add_trace(go.Indicator(
     domain = {'x': [0.5, 0], 'y': [1, 0.5]}))
 
 
-def bar_graph(x=None, y=None, xTitle=None, yTitle=None, title=None, how=None,
-              colors=None):
-    df = country_info('Somalia', item='Lemons and limes')
-    fig = df.iplot(asFigure=True, kind='bar', x=x, y=y, yTitle=yTitle,
-                   xTitle=xTitle, theme='polar', subplots=True,
-                   subplot_titles=True, title=title, colors=colors,
-                   orientation=how)
-    return fig
+fig1 = dd.bar_graph(x='Years', y='Area harvested', xTitle='Area harvested', yTitle='Years',
+                 title='Area Harvested (Hectares)', how='h', colors='#903D30', item='Lemons and limes')
 
-
-def line_graph(x=None, y=None, xTitle=None, yTitle=None, title=None, mode=None,
-               colors=None, scale=None, how=None):
-    df = country_info('Somalia', item='Lemons and limes')
-    fig = df.iplot(asFigure=True, kind='scatter', mode=mode, x=x, y=y, xTitle=xTitle,
-                   yTitle=yTitle, subplots=True, subplot_titles=True, theme='polar',
-                   interpolation=how, title=title, colorscale=scale)
-    return fig
-
-
-fig1 = bar_graph(x='Years', y='Area harvested', xTitle='Area harvested', yTitle='Years',
-                 title='Area Harvested (Hectares)', how='h', colors='#903D30')
-
-fig2 = line_graph(x='Years', y='Production', xTitle='Years', yTitle='Tonnes',
-                  colors='#367385',how='spline', mode='lines',
+fig2 = dd.line_graph(x='Years', y='Production', xTitle='Years', yTitle='Tonnes',
+                  colors='#367385',how='spline', mode='lines', item='Lemons and limes',
                   title='Lemons and limes Production in Somalia from 2014 - 2018')
 
-fig3 = px.scatter_mapbox(total_element('production', 'Lemons and limes'), lat='Lat',
+fig3 = px.scatter_mapbox(dd.total_element('production', 'Lemons and limes'), lat='Lat',
                          lon='Lon', color='Total', hover_name='Area', size = 'Total',
                          hover_data={'Lat':False, 'Lon':False}, labels = {'Area':'Element'},
                          color_continuous_scale=colors, zoom=1.4, width=1900, height=700,
@@ -177,9 +102,9 @@ fig4 = data[data['Element'] == 'Production'].iplot(asFigure=True, kind='pie',
                                                    colors=colors, linewidth=.5,
                                                    title='Lemons and limes Production in Africa as at 2018')
 
-fig5 = line_graph(x='Years', y='Yield', xTitle='Years', yTitle='Tonne per hectare',
+fig5 = dd.line_graph(x='Years', y='Yield', xTitle='Years', yTitle='Tonne per hectare',
                   title='Lemons and limes Yield for Somalia (2014 - 2018)', mode='lines+markers',
-                  scale='puor', how='spline')
+                  scale='puor', how='spline', item='Lemons and limes')
 
 layout = html.Div([
     dbc.Container([
