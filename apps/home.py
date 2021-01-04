@@ -18,8 +18,8 @@ layout = html.Div([
                 dbc.Container([
                     html.H2(children='This dashboard has been created by the Data Science team at the BlueXpress Technologies'),
                     html.Hr(),
-                    html.H2(children='The data used in the development of this application was obtained from the United Nations \
-                    Food and Agriculture Organization\'s public Data portal')
+                    html.H2(children='The data used in the development of this application was obtained from the \
+                            Food and Agriculture Organization of the United Nations public data repository.')
                     ]))
         ]),
         html.Hr(),
@@ -46,14 +46,14 @@ layout = html.Div([
             dbc.Col(
                 dbc.Container([
                     html.P(children='It seeks to reveal insights from the data obtained.\
-                        The data has been cleaned process produced data which has been \
+                        The data has undergone cleansing process and produced data which has been \
                         optimized for data mining and data manipulation.',
                         style={
                             'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
                         }),
                     html.Hr(),
                     html.P(children='This project seeks to reveal insights combined with historical data and delves\
-                        deeper into analysis of trends.',
+                        deeper into analysis of observed trends.',
                         style={
                             'font-family': 'Overpass, sans-serif', 'font-size':'210%', 'font-weight':'normal'
                         }),
