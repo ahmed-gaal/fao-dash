@@ -6,6 +6,7 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 from app import server
 from app import app
+from crops import Dashboard
 # import all pages in the app
 from apps import banana,bean,home,grapefruit,lemon,maize,sesame
 ##
